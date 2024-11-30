@@ -1,0 +1,50 @@
+/* 背景色與 React 原本動畫色彩一致 */
+:root {
+    --primary-color: #282c34; /* React 預設深灰背景 */
+    --secondary-color: #61dafb; /* React logo 的藍色 */
+    --text-color: white;       /* React 預設文字顏色 */
+  }
+  
+  /* 外層容器 */
+  .homepage-container {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 標題置中 */
+  .homepage-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* 按鈕容器，讓按鈕並列 */
+  .homepage-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* 按鈕樣式 */
+  .homepage-button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  /* 按鈕的懸停效果 */
+  .homepage-button:hover {
+    transform: scale(1.1);
+    background-color: #21a1f1; /* 略深的藍色 */
+  }
+  

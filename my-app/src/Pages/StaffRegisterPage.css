@@ -1,0 +1,85 @@
+.registerpage-container {
+    background-color: #282c34;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.registerpage-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.registerpage-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.registerpage-label {
+    font-size: 1.2rem;
+    text-align: left;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.registerpage-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .password-toggle {
+    background: none;
+    border: none;
+    color: #d3d3d3; /* 淺灰色 */
+    font-size: 1.5rem;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .password-toggle:hover {
+    color: #61dafb;
+  }
+
+.registerpage-buttons {
+    display: flex;
+    justify-content: space-between; /* 讓按鈕左右排列 */
+    gap: 10px;
+    width: 300px; /* 設定與輸入框相同的寬度 */
+    margin-top: 20px;
+}
+
+.registerpage-button {
+    background-color: #61dafb;
+    color: #282c34;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 48%; /* 讓每個按鈕的寬度為容器的一半，並確保間距 */
+}
+
+.registerpage-button:hover {
+    transform: scale(1.1);
+    background-color: #21a1f1;
+}

@@ -1,0 +1,125 @@
+body {
+    margin: 0; /* 移除預設的邊距 */
+    padding: 0;
+    background-color: #20232a; /* 深色背景 */
+    color: #ffffff; /* 文字顏色設置為白色以提高對比 */
+    font-family: Arial, sans-serif; /* 設定字體樣式 */
+  }
+
+.inventory-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #61dafb; /* React logo 的主藍色 */
+    border-radius: 10px;
+    background: linear-gradient(135deg, #282c34, #20232a); /* React 背景深藍漸層 */
+    color: #ffffff; /* 白色字體 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .inventory-title {
+    text-align: center;
+    color: #61dafb; /* React logo 的主藍色 */
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-transform: uppercase; /* 全大寫文字 */
+    font-weight: bold; /* 加粗 */
+    letter-spacing: 2px; /* 增加字母間距 */
+  }
+  
+  .inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff; /* 白色字體 */
+  }
+  
+  .inventory-table th,
+  .inventory-table td {
+    border: 1px solid #61dafb; /* React 主藍色邊框 */
+    padding: 10px;
+    text-align: center;
+    background-color: #20232a; /* React 的深灰背景 */
+    color: #61dafb; /* React 主藍色字體 */
+  }
+  
+  .inventory-table t {
+    background-color: #20232a; /* React 的深灰背景 */
+    color: #61dafb; /* React 主藍色字體 */
+  }
+  
+  .inventory-input {
+    width: 60px;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #61dafb; /* React 主藍色 */
+    border-radius: 5px;
+    background-color: #282c34; /* 深藍背景 */
+    color: #ffffff; /* 白色字體 */
+    font-size: 14px;
+  }
+  
+  .inventory-input::placeholder {
+    color: #61dafb; /* React 主藍色 */
+  }
+  
+  .inventory-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;/* 方圓角 */
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 14px;
+    color: #ffffff; /* 白色字體 */
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-button, .save-button, .search-button, .edit-button, .delete-button {
+    background-color: #61dafb; /* React 主藍色 */
+  }
+  
+  .add-button:hover, .save-button:hover, .search-button:hover, .edit-button:hover, .delete-button:hover {
+    background-color: #ffffff;
+    color: #20232a;
+  }
+  
+.add-button {
+    margin-right: 10px;
+}
+
+.save-button {
+    margin-right: 10px;
+}
+
+.search-button {
+    margin-right: 10px;
+}
+
+  .deleted-row {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  .highlight-row {
+    background-color: #ffa500;
+  }
+  
+  .search-container input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .search-container button {
+    padding: 5px 10px;
+    background-color: #61dafb;
+    color: #20232a;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .search-container button:hover {
+    background-color: #ffffff;
+    color: #20232a;
+  }
+
+  
+  
