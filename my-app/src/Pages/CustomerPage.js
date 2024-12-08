@@ -1,19 +1,47 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CustomerPage.css'; // 引入自訂樣式
+import './CustomerPage.css';
 
-function CustomerPage() {
+function CustomerPage({ setIsLoggedIn }) {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);  // 控制密碼顯示
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    staffId: ''
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/customer/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        alert(result.message);
+        setIsLoggedIn(true);
+        navigate('/shoppingcart');
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || 'Invalid email or password.');
+      }
+    } catch (error) {
+      setErrorMessage('Unable to connect to the server.');
+      console.error('Login error:', error);
+    }
   };
 
   return (
@@ -24,6 +52,7 @@ function CustomerPage() {
           Email
           <input
             type="email"
+            name="email"
             placeholder="Please Enter your Email"
             className="customerpage-input"
             value={formData.email}
@@ -34,12 +63,12 @@ function CustomerPage() {
           Password
           <div className="password-container">
             <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Please Enter your Password"
-                className="customerpage-input"
-                value={formData.password}
-                onChange={handleChange}
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Please Enter your Password"
+              className="customerpage-input"
+              value={formData.password}
+              onChange={handleChange}
             />
             <button
               type="button"
@@ -51,12 +80,15 @@ function CustomerPage() {
           </div>
         </label>
 
-        {/* Login 按鈕 */}
-        <button type="button" className="customerpage-button-login">
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <button
+          type="button"
+          className="customerpage-button-login"
+          onClick={handleLogin}
+        >
           Login
         </button>
-
-        {/* Return HomePage 和 Register 按鈕並排顯示 */}
         <div className="customerpage-button-other">
           <button
             type="button"
@@ -65,11 +97,11 @@ function CustomerPage() {
           >
             Return HomePage
           </button>
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="customerpage-button"
             onClick={() => navigate('/customerregister')}
-            >
+          >
             Register
           </button>
         </div>

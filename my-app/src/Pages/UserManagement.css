@@ -1,0 +1,71 @@
+.user-management-container {
+    padding: 20px;
+  }
+  
+  .user-management-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .order-management-button {
+    float: right;
+    margin-bottom: 20px;
+    background-color: #61dafb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .order-management-button:hover {
+    background-color: #61dafb;
+  }
+  
+  .user-table {
+    margin-bottom: 40px;
+  }
+  
+  .user-table h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .user-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+  
+  .user-table th,
+  .user-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .deleted-row td {
+    text-decoration: line-through;
+    color: #999;
+  }
+  
+  .add-button,
+  .edit-button,
+  .delete-button {
+    background-color: #61dafb;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  
+  .add-button:hover,
+  .edit-button:hover,
+  .delete-button:hover {
+    background-color: #61dafb;
+  }
+  

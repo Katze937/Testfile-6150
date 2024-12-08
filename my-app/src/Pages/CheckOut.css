@@ -1,0 +1,74 @@
+.checkout-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.checkout-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #61dafb; /* 标题字体颜色设置为蓝色 */
+}
+
+.order-summary {
+  margin-bottom: 20px;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.order-table th,
+.order-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+  color: #61dafb; /* 表格字体颜色设置为蓝色 */
+}
+
+.order-total {
+  text-align: right;
+  font-size: 1.2em;
+  margin-right: 10px;
+  color: #61dafb; /* 总计字体颜色设置为蓝色 */
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.shipping-form label {
+  display: block;
+  margin-bottom: 10px;
+  color: #61dafb; /* 表单标签字体颜色设置为蓝色 */
+}
+
+.shipping-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.error-message {
+  color: red; /* 错误信息字体颜色为红色 */
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.payment-method {
+  margin-bottom: 20px;
+}
+
+.confirm-button {
+  background-color: #61dafb;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.confirm-button:hover {
+  background-color: #61dafb;
+}

@@ -94,32 +94,111 @@ body {
     margin-right: 10px;
 }
 
-  .deleted-row {
-    text-decoration: line-through;
-    color: gray;
-  }
-  
-  .highlight-row {
-    background-color: #ffa500;
-  }
-  
-  .search-container input {
-    margin-right: 10px;
-    padding: 5px;
-  }
-  
-  .search-container button {
-    padding: 5px 10px;
-    background-color: #61dafb;
-    color: #20232a;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .search-container button:hover {
-    background-color: #ffffff;
-    color: #20232a;
-  }
+.deleted-row {
+  text-decoration: line-through;
+  color: gray;
+}
 
+.highlight-row {
+  background-color: #ffa500;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+
+.search-container input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 12px; 
+  flex: none;
+}
+
+.search-container button {
+  padding: 5px 10px;
+  background-color: #61dafb;
+  color: #20232a;
+  border: none;
+  cursor: pointer;
+}
   
-  
+.search-container button:hover {
+  background-color: #ffffff;
+  color: #20232a;
+  transform: scale(1.1);
+}
+.item-image {
+width: 50px;
+height: 50px;
+object-fit: cover;
+}
+
+.search-container input:focus {
+  border-color: #61dafb; 
+}
+
+/* 按鈕樣式 */
+.search-button,
+.add-button,
+.save-button,
+.edit-delete-button {
+  background-color: #61dafb;
+  color: black;
+  border-color: #61dafb;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.search-button:hover,
+.add-button:hover,
+.save-button:hover,
+.edit-delete-button:hover {
+  background-color: linear-gradient(90deg, #282c34, #61dafb); /* 滑鼠懸停時的顏色 */
+}
+
+.edit-delete-button {
+  margin-right: 5px;
+  transform: scale(1.1);
+}
+
+.checkout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #61dafb;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #21a1f1;
+  transform: scale(1.1);
+}
+
+.manage-users-button {
+  background-color: #21a1f1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  float: right;
+  margin: 10px; 
+}
+
+.manage-users-button:hover {
+  background-color: #21a1f1;
+  transform: scale(1.1);
+}

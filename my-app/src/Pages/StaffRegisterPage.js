@@ -2,6 +2,32 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StaffRegisterPage.css'; // 引入樣式
 
+// Reusable Password Input Component
+function PasswordInput({ label, name, value, onChange, showPassword, toggleVisibility }) {
+  return (
+    <label className="registerpage-label">
+      {label}
+      <div className="password-container">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          name={name}
+          placeholder={`Please Enter your ${label}`}
+          className="registerpage-input"
+          value={value}
+          onChange={onChange}
+        />
+        <button
+          type="button"
+          className="password-toggle"
+          onClick={toggleVisibility}
+        >
+          👁️
+        </button>
+      </div>
+    </label>
+  );
+}
+
 function StaffRegisterPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -18,48 +44,49 @@ function StaffRegisterPage() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (!emailRegex.test(formData.email)) {
-    alert('Invalid email format');
-    return;
-  }
+    if (!emailRegex.test(formData.email)) {
+      alert('Invalid email format');
+      return;
+    }
 
-  // 密碼長度與強度檢查
-  if (formData.password.length < 8) {
-    alert('Password must be at least 8 characters long');
-    return;
-  }
+    // Password length and strength check
+    if (formData.password.length < 8) {
+      alert('Password must be at least 8 characters long');
+      return;
+    }
 
-  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
-  if (!strongPasswordRegex.test(formData.password)) {
-    alert('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character');
-    return;
-  }
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+    if (!strongPasswordRegex.test(formData.password)) {
+      alert('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character');
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
 
-    // 呼叫 API 儲存資料
-    fetch('https://smooth-comfort-405104.uc.r.appspot.com/document/createorupdate/users', {
+    // Call the API to save the data
+    fetch('http://127.0.0.1:5000/staff/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTg5YjZlY2FhNWVjNzQ5NDQxMThiMiIsInVzZXJuYW1lIjoiY2hlbi55dXBlQG5vcnRoZWFzdGVybi5lZHUiLCJpYXQiOjE3MzI1OTY2NjYsImV4cCI6MTczNDc1NjY2Nn0.SPsKlke_-mhLVLii_08PAz6AabVOGq_8fv4VTYm5Jgc',
       },
       body: JSON.stringify({
         email: formData.email,
         password: formData.password,
       }),
     })
+    
       .then((response) => response.json())
       .then((data) => {
         console.log('Registration successful:', data);
-        alert('Successful Submit');
-        setTimeout(() => navigate('/staffpage'), 10000); // 停留10秒後跳轉
+        alert('Registration successful');
+        setTimeout(() => navigate('/staffpage'), 10000); // Redirect after 10 seconds
       })
       .catch((error) => {
         console.error('Error during registration:', error);
@@ -70,7 +97,7 @@ function StaffRegisterPage() {
   return (
     <div className="registerpage-container">
       <h1 className="registerpage-title">Staff Register</h1>
-      <form className="registerpage-form">
+      <form className="registerpage-form" onSubmit={handleSubmit}>
         <label className="registerpage-label">
           Email
           <input
@@ -80,48 +107,28 @@ function StaffRegisterPage() {
             className="registerpage-input"
             value={formData.email}
             onChange={handleChange}
+            required
           />
         </label>
-        <label className="registerpage-label">
-          Password
-          <div className="password-container">
-            <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Please Enter your Password"
-                className="registerpage-input"
-                value={formData.password}
-                onChange={handleChange}
-          />
-          <button
-              type="button"
-              className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              👁️
-            </button>
-          </div>
-        </label>
-        <label className="registerpage-label">
-          Confirm Password
-          <div className="password-container">
-            <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Please Confirm your Password"
-                className="registerpage-input"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-            />
-            <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            >
-                👁️
-                </button>
-            </div>
-        </label>
+        
+        <PasswordInput
+          label="Password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          showPassword={showPassword}
+          toggleVisibility={() => setShowPassword(!showPassword)}
+        />
+        
+        <PasswordInput
+          label="Confirm Password"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          showPassword={showConfirmPassword}
+          toggleVisibility={() => setShowConfirmPassword(!showConfirmPassword)}
+        />
+        
         <div className="registerpage-buttons">
           <button
             type="button"
@@ -130,7 +137,7 @@ function StaffRegisterPage() {
           >
             Return
           </button>
-          <button type="button" className="registerpage-button" onClick={handleSubmit}>
+          <button type="submit" className="registerpage-button">
             Submit
           </button>
         </div>

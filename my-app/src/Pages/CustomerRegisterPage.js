@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CustomerRegisterPage.css'; // 引入樣式
+import './CustomerRegisterPage.css'; // Ensure the CSS file is correct
 
 function CustomerRegisterPage() {
   const navigate = useNavigate();
@@ -18,29 +18,35 @@ function CustomerRegisterPage() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match!');
       return;
     }
 
-    // 呼叫 API 儲存資料
-    fetch('https://your-api-endpoint.com/register', {
+    // Call API to save data
+    fetch('http://127.0.0.1:5000/customer/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTg5YjZlY2FhNWVjNzQ5NDQxMThiMiIsInVzZXJuYW1lIjoiY2hlbi55dXBlQG5vcnRoZWFzdGVybi5lZHUiLCJpYXQiOjE3MzI1OTY2NjYsImV4cCI6MTczNDc1NjY2Nn0.SPsKlke_-mhLVLii_08PAz6AabVOGq_8fv4VTYm5Jgc',
       },
       body: JSON.stringify({
         email: formData.email,
         password: formData.password,
       }),
     })
+    
       .then((response) => response.json())
       .then((data) => {
         console.log('Registration successful:', data);
-        alert('Successful Submit');
-        setTimeout(() => navigate('/customerpage'), 10000); // 停留10秒後跳轉
+        alert('Registration successful');
+        setFormData({ email: '', password: '', confirmPassword: '' }); // Reset form
+
+        // Redirect after a brief delay
+        setTimeout(() => navigate('/customerpage'), 1000); // Adjust the delay as necessary
       })
       .catch((error) => {
         console.error('Error during registration:', error);
@@ -51,7 +57,7 @@ function CustomerRegisterPage() {
   return (
     <div className="registerpage-container">
       <h1 className="registerpage-title">Customer Register</h1>
-      <form className="registerpage-form">
+      <form className="registerpage-form" onSubmit={handleSubmit}>
         <label className="registerpage-label">
           Email
           <input
@@ -65,16 +71,16 @@ function CustomerRegisterPage() {
         </label>
         <label className="registerpage-label">
           Password
-            <div className="password-container">
+          <div className="password-container">
             <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Please Enter your Password"
-                className="registerpage-input"
-                value={formData.password}
-                onChange={handleChange}
-          />
-          <button
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Please Enter your Password"
+              className="registerpage-input"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <button
               type="button"
               className="password-toggle"
               onClick={() => setShowPassword(!showPassword)}
@@ -86,32 +92,32 @@ function CustomerRegisterPage() {
         <label className="registerpage-label">
           Confirm Password
           <div className="password-container">
-          <input
-                type={showConfirmPassword ? 'text' : 'password'}
-                name="confirmPassword"
-                placeholder="Please Confirm your Password"
-                className="registerpage-input"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-          />
-          <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              name="confirmPassword"
+              placeholder="Please Confirm your Password"
+              className="registerpage-input"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
-                👁️
-                </button>
+              👁️
+            </button>
           </div>
         </label>
         <div className="registerpage-buttons">
           <button
             type="button"
             className="registerpage-button"
-            onClick={() => navigate('/customer')}
+            onClick={() => navigate('/customer')} // Navigate to customer page on return
           >
             Return
           </button>
-          <button type="button" className="registerpage-button" onClick={handleSubmit}>
+          <button type="submit" className="registerpage-button">
             Submit
           </button>
         </div>
